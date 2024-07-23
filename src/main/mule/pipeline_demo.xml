@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6a7e9249-71be-4035-ad21-08f8af2d01c2" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="pipeline_demoFlow" doc:id="8d10a242-655b-420e-ad12-4a7d42dc4e1d" >
+		<http:listener doc:name="Listener" doc:id="815c21ce-8fdc-49cb-8736-20e2820c9d5a" config-ref="HTTP_Listener_config" path="pipeline_test"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6c263cb4-30a8-419e-a1ee-cf5c389c7886" />
+		<set-payload value='#["pipeline test is a success"]' doc:name="Set Payload" doc:id="d94fffe3-415e-493f-90d6-748c57b9c3be" />
+	</flow>
+</mule>
