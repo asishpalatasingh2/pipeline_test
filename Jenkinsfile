@@ -19,29 +19,29 @@ pipeline {
                 bat 'mvn test'
             } 
         }
-        stage('Approval') {
-            steps {
-                script {
-                	if(env.GIT_BRANCH.toLowerCase() == 'origin/main') {
-                    	sendApprovalEmail()
-                    	def approvalResponse = input(
-                        	id: 'userInput',
-                        	message: 'Please approve the deployment to dev environment',
-                        	parameters: [
-                            	[$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Approve Deployment?', name: 'Approve']
-                        	],
-                        	timeout: 5 * 60, // 5 minutes timeout
-                        	timeoutMessage: 'Approval timed out. Deployment not approved.'
-                    	)
-                    	if (!approvalResponse) {
-                        	error 'Deployment not approved. Aborting.'
-                    	}
-                    } else{
-                    echo "Approval Not needed"
-                    }
-                }
-            }
-        }
+        // stage('Approval') {
+        //     steps {
+        //         script {
+        //         	if(env.GIT_BRANCH.toLowerCase() == 'origin/main') {
+        //             	sendApprovalEmail()
+        //             	def approvalResponse = input(
+        //                 	id: 'userInput',
+        //                 	message: 'Please approve the deployment to dev environment',
+        //                 	parameters: [
+        //                     	[$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Approve Deployment?', name: 'Approve']
+        //                 	],
+        //                 	timeout: 5 * 60, // 5 minutes timeout
+        //                 	timeoutMessage: 'Approval timed out. Deployment not approved.'
+        //             	)
+        //             	if (!approvalResponse) {
+        //                 	error 'Deployment not approved. Aborting.'
+        //             	}
+        //             } else{
+        //             echo "Approval Not needed"
+        //             }
+        //         }
+        //     }
+        // }
         stage('Build and Deploy') {
             steps {
                 script {
