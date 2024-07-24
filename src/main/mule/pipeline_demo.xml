@@ -17,7 +17,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 				<logger level="INFO" doc:name="Logger" doc:id="8d854377-7ea4-4453-8c27-a20d393bbc1d" message="Success"/>
 			</when>
 			<otherwise >
-				<logger level="INFO" doc:name="Logger" doc:id="57cc8790-9217-4627-a117-8300f15b308c" message="Failed 1"/>
+				<logger level="INFO" doc:name="Logger" doc:id="57cc8790-9217-4627-a117-8300f15b308c" message='#["Failed 1"]'/>
 				<logger level="INFO" doc:name="Logger" doc:id="a53debc3-27be-4abf-be55-becc8b300a72" message="Failed 2"/>
 				<logger level="INFO" doc:name="Logger" doc:id="49a5db9f-580b-4569-9fa0-9009ae4223a3" message="Failed 3"/>
 			</otherwise>

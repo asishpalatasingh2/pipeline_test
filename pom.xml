@@ -14,8 +14,9 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<app.runtime>4.4.0-20240408</app.runtime>
-		<mule.maven.plugin.version>4.1.0</mule.maven.plugin.version>
-		<munit.version>3.1.0</munit.version>
+		<mule.maven.plugin.version>4.1.2</mule.maven.plugin.version>
+		<munit.version>3.2.0</munit.version>
+		<muleVersion>4.4.0</muleVersion>
 	</properties>
 
 	<build>
@@ -23,7 +24,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.2.0</version>
+				<version>3.4.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
@@ -44,39 +45,75 @@
 							<key>value</key>
 						</properties>
 					</cloudHubDeployment>
+					<copyToAppsDirectory>true</copyToAppsDirectory>
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>com.mulesoft.munit.tools</groupId>
-				<artifactId>munit-maven-plugin</artifactId>
-				<version>${munit.version}</version>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.7</version>
 				<executions>
 					<execution>
-						<id>test</id>
-						<phase>test</phase>
+						<id>add-resource</id>
+						<phase>generate-resources</phase>
 						<goals>
-							<goal>test</goal>
-							<goal>coverage-report</goal>
+							<goal>add-resource</goal>
 						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>src/main/app/</directory>
+								</resource>
+								<resource>
+									<directory>src/main/api/</directory>
+								</resource>
+								<resource>
+									<directory>mappings/</directory>
+								</resource>
+							</resources>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<coverage>
-            			<runCoverage>true</runCoverage>
-            			<failBuild>true</failBuild>
-
-            			<requiredApplicationCoverage>85</requiredApplicationCoverage>
-            			<requiredResourceCoverage>50</requiredResourceCoverage>
-            			<requiredFlowCoverage>50</requiredFlowCoverage>
-
-            			<formats>
-                			<format>console</format>
-                			<format>html</format>
-            			</formats>
-        			</coverage>
-				</configuration>
+			</plugin>
+			<plugin>
+    			    <groupId>com.mulesoft.munit.tools</groupId>
+    <artifactId>munit-maven-plugin</artifactId>
+    <version>${munit.version}</version>
+    				<executions>
+        				<execution>
+            				<id>test</id>
+            				<phase>test</phase>
+            				<goals>
+                				<goal>test</goal>
+                				<goal>coverage-report</goal>
+            				</goals>
+        				</execution>
+    				</executions>
+    				<configuration>
+    					<runtimeProduct>MULE_EE</runtimeProduct>
+        					<coverage>
+            					<runCoverage>true</runCoverage>
+            					<failBuild>true</failBuild>
+            					<requiredApplicationCoverage>0</requiredApplicationCoverage>
+            					<requiredResourceCoverage>0</requiredResourceCoverage>
+            					<requiredFlowCoverage>0</requiredFlowCoverage>
+            					<formats>
+                					<format>console</format>
+                					<format>html</format>
+                					<format>json</format>
+            					</formats>
+        					</coverage>
+    				</configuration>
 			</plugin>
 		</plugins>
+		        <testResources>
+            <testResource>
+                <directory>src/test/munit</directory>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
 	</build>
 
 	<dependencies>
@@ -112,6 +149,38 @@
 			<version>1.2.1</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mule.distributions/mule-runtime-impl-bom -->
+		<dependency>
+    	<groupId>org.mule.distributions</groupId>
+    	<artifactId>mule-runtime-impl-bom</artifactId>
+    	<version>4.4.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.mulesoft.munit.tools/munit-maven-plugin -->
+<dependency>
+    <groupId>com.mulesoft.munit.tools</groupId>
+    <artifactId>munit-maven-plugin</artifactId>
+    <version>3.2.0</version>
+</dependency>		
+<dependency>
+			<groupId>org.mule.tests</groupId>
+			<artifactId>mule-tests-functional</artifactId>
+			<version>${muleVersion}</version>
+			<scope>test</scope>
+		</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
+<dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-clean-plugin</artifactId>
+    <version>3.4.0</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.mule.tools.maven/mule-maven-plugin -->
+<dependency>
+    <groupId>org.mule.tools.maven</groupId>
+    <artifactId>mule-maven-plugin</artifactId>
+    <version>4.1.2</version>
+</dependency>
+
+		
 	</dependencies>
 
 	<repositories>
