@@ -14,8 +14,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<app.runtime>4.4.0-20240408</app.runtime>
-		<mule.maven.plugin.version>4.1.2</mule.maven.plugin.version>
-		<munit.version>3.2.0</munit.version>
+		<mule.maven.plugin.version>4.1.0</mule.maven.plugin.version>
+		<munit.version>3.1.0</munit.version>
 		<muleVersion>4.4.0</muleVersion>
 	</properties>
 
@@ -24,7 +24,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.4.0</version>
+				<version>3.2.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
@@ -47,33 +47,6 @@
 					</cloudHubDeployment>
 					<copyToAppsDirectory>true</copyToAppsDirectory>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.7</version>
-				<executions>
-					<execution>
-						<id>add-resource</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>add-resource</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>src/main/app/</directory>
-								</resource>
-								<resource>
-									<directory>src/main/api/</directory>
-								</resource>
-								<resource>
-									<directory>mappings/</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
     			    <groupId>com.mulesoft.munit.tools</groupId>
@@ -159,7 +132,7 @@
 <dependency>
     <groupId>com.mulesoft.munit.tools</groupId>
     <artifactId>munit-maven-plugin</artifactId>
-    <version>3.2.0</version>
+    <version>3.1.0</version>
 </dependency>		
 <dependency>
 			<groupId>org.mule.tests</groupId>
@@ -177,7 +150,7 @@
 <dependency>
     <groupId>org.mule.tools.maven</groupId>
     <artifactId>mule-maven-plugin</artifactId>
-    <version>4.1.2</version>
+    <version>4.1.0</version>
 </dependency>
 
 		
@@ -191,23 +164,35 @@
 			<layout>default</layout>
 		</repository>
 		<repository>
-			<id>mulesoft-releases</id>
-			<name>MuleSoft Releases Repository</name>
-			<url>https://repository.mulesoft.org/releases/</url>
+			<id>releases-ee</id>
+			<name>releases-ee</name>
+			<url>https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/</url>
 			<layout>default</layout>
 		</repository>
+            <repository>
+        <id>anypoint-exchange</id>
+        <name>Anypoint Exchange</name>
+        <url>https://maven.anypoint.mulesoft.com/api/v1/maven</url>
+        <layout>default</layout>
+    </repository>
+    <repository>
+        <id>mulesoft-releases</id>
+        <name>MuleSoft Releases Repository</name>
+        <url>https://repository.mulesoft.org/releases/</url>
+        <layout>default</layout>
+    </repository>
 	</repositories>
 
 	<pluginRepositories>
-		<pluginRepository>
-			<id>mulesoft-releases</id>
-			<name>MuleSoft Releases Repository</name>
-			<layout>default</layout>
-			<url>https://repository.mulesoft.org/releases/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
+    <pluginRepository>
+        <id>mulesoft-releases</id>
+        <name>MuleSoft Releases Repository</name>
+        <layout>default</layout>
+        <url>https://repository.mulesoft.org/releases/</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </pluginRepository>
 	</pluginRepositories>
 
 </project>
