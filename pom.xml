@@ -72,7 +72,6 @@
             					<requiredFlowCoverage>0</requiredFlowCoverage>
             					<formats>
                 					<format>console</format>
-                					<format>html</format>
                 					<format>json</format>
             					</formats>
         					</coverage>
