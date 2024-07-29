@@ -45,7 +45,6 @@
 							<key>value</key>
 						</properties>
 					</cloudHubDeployment>
-					<copyToAppsDirectory>true</copyToAppsDirectory>
 				</configuration>
 			</plugin>
 			<plugin>
