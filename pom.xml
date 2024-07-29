@@ -120,38 +120,6 @@
 			<version>1.2.1</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.mule.distributions/mule-runtime-impl-bom -->
-		<dependency>
-    	<groupId>org.mule.distributions</groupId>
-    	<artifactId>mule-runtime-impl-bom</artifactId>
-    	<version>4.4.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.mulesoft.munit.tools/munit-maven-plugin -->
-<dependency>
-    <groupId>com.mulesoft.munit.tools</groupId>
-    <artifactId>munit-maven-plugin</artifactId>
-    <version>3.1.0</version>
-</dependency>		
-<dependency>
-			<groupId>org.mule.tests</groupId>
-			<artifactId>mule-tests-functional</artifactId>
-			<version>${muleVersion}</version>
-			<scope>test</scope>
-		</dependency>
-<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
-<dependency>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-clean-plugin</artifactId>
-    <version>3.4.0</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.mule.tools.maven/mule-maven-plugin -->
-<dependency>
-    <groupId>org.mule.tools.maven</groupId>
-    <artifactId>mule-maven-plugin</artifactId>
-    <version>4.1.0</version>
-</dependency>
-
-		
 	</dependencies>
 
 	<repositories>
