@@ -3,8 +3,8 @@ pipeline {
     
     environment {
         GIT_REPO = 'https://github.com/asishpalatasingh2/pipeline_test.git'
-		ANYPOINT_CREDENTIALS = credentials('MuleCredential') 
-        APPROVAL_EMAIL = 'd.teja1462@gmail.com'
+	ANYPOINT_CREDENTIALS = credentials('MuleCredential') 
+        APPROVAL_EMAIL = 'asish.tgh@gmail.com'
         JENKINS_URL = 'http://localhost:8083/'
 	} 
     
@@ -63,9 +63,16 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            cleanWs()
+post {
+    	success {
+            mail to: 'asish.tgh@gmail.com',
+            subject: "Jenkins Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: "Good news! The Jenkins build ${env.JOB_NAME} #${env.BUILD_NUMBER} was successful.\n\nCheck it out here: ${env.BUILD_URL}"
+        }
+        failure {
+            mail to: 'asish.tgh@gmail.com',
+            subject: "Jenkins Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: "Unfortunately, the Jenkins build ${env.JOB_NAME} #${env.BUILD_NUMBER} failed.\n\nCheck it out here: ${env.BUILD_URL}"
         }
     }
 }
